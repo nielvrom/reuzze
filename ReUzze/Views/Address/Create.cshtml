@@ -1,0 +1,73 @@
+﻿@model ReUzze.Models.AddressViewModel
+
+@{
+    ViewBag.Title = "Address Management - Create Address";
+    ViewBag.Description = "With This view you can create an Address.";
+    ViewBag.Keywords = "reuzze, address, create";
+}
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Create a new Address or &nbsp;&nbsp;<button class="btn btn-default" id="use_curr_location">Use current location</button> (approximately)
+        </div>
+        <div class="panel-body">
+            @if (Model.StatusMessage != null)
+            {
+                <div class="field-validation-error">
+                    <p>@Html.DisplayTextFor(model => model.StatusMessage)</p>
+                </div>
+            }
+
+            @using (Html.BeginForm("Create", "Address", FormMethod.Post, new { @id = "newaddressform", autocomplete="off" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(model => model.Address.Latitude, new {@class="latitude" })
+                @Html.HiddenFor(model => model.Address.Longitude, new {@class="longitude" })
+
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.City)
+                        @Html.TextBoxFor(model =>  model.Address.City, new {@class="form-control city" })
+                        @Html.ValidationMessageFor(model =>  model.Address.City)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.Street)
+                        @Html.TextBoxFor(model =>  model.Address.Street, new {@class="form-control street" })
+                        @Html.ValidationMessageFor(model =>  model.Address.Street)
+                    </div>  
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.StreetNumber)
+                        @Html.TextBoxFor(model =>  model.Address.StreetNumber, new {@class="form-control streetnumber" })
+                        @Html.ValidationMessageFor(model =>  model.Address.StreetNumber)
+                    </div> 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.Region)
+                        @Html.DropDownListFor(model => model.SelectRegionId, Model.Regions, "Choose... ", new {@class="form-control region chosen-select" })
+                        @Html.ValidationMessageFor(model =>  model.Address.Region)
+                    </div>                   
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </fieldset>
+            }
+            <div class="pull-right well">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    @Scripts.Render("~/bundles/location")
+    @Scripts.Render("~/bundles/chosen")
+    @Styles.Render("~/Content/chosen")
+    <script type="text/javascript">
+        $(".chosen-select").chosen({
+            disable_search: true
+        });
+    </script>
+}

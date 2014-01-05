@@ -1,0 +1,22 @@
+﻿@model  IEnumerable<ReUzze.Models.MapViewModel>
+
+@{
+    ViewBag.Title = "Address Management";
+    ViewBag.Description = "In this view you can manage categories (like: edit, delete and publish). You can also create a new article!";
+}
+
+<div class="row">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="articles-list">
+        <div id="map-canvas"/>
+        <a class="btn btn-default" href="~/address/index">See locations in a table</a>
+    </section>        
+</div>
+
+@section Scripts {
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script>
+        var model = @Html.Raw(Json.Encode(Model));
+    </script>
+    @Scripts.Render("~/bundles/showmap")
+}
+

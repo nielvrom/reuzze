@@ -1,0 +1,71 @@
+﻿@model PagedList.IPagedList<App.Models.Role>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Role Management - Roles List";
+    ViewBag.Description = "With This view you can see the Roles.";
+    ViewBag.Keywords = "reuzze, roles, list";
+}
+
+@if (Model.Count > 0)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="roles-list">
+        <div class="table-responsive">
+            @using (Html.BeginForm("Index", "Role", FormMethod.Get))
+            {
+                <p class="pull-right">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)  
+                    <input type="submit" value="Search" />
+                </p>
+            }
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.RolenameSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>@Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr data-id="role-@role.Id" data-title="@role.Name">
+                            <td>@role.Name</td>
+                            <td>@role.Description</td>
+                            <td>@role.CreateDate</td>
+                            <td>
+                                <a href="@Url.Action("Edit", new {id=@role.Id})" title="Edit role: @role.Name"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="@Url.Action("Delete", new {id=@role.Id})" title="Delete role: @role.Name" class="delete-link" data-cat="role" data-id=@role.Id><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pull-right">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", 
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+        </div>
+        <div class="delete-errors"></div>
+        <a class="btn btn-default" href="~/role/create">Add new Role</a>
+    </section>        
+}
+else if (ViewBag.NoSearchResults != true)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        No Roles in Database!
+        <a class="btn btn-default" href="~/role/create">Add new Role</a>
+    </section>
+}
+else
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Your search has no results!
+        <a class="btn btn-default" href="~/role/index">Go back to overview list</a>
+    </section>
+}
+
+

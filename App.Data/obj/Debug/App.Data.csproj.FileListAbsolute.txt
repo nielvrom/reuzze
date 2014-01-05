@@ -1,0 +1,15 @@
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\App.Data.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\App.Data.pdb
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\obj\Debug\App.Data.csprojResolveAssemblyReference.cache
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\obj\Debug\App.Data.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\obj\Debug\App.Data.pdb
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\App.Data.dll.config
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\App.Models.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\BCrypt.Net.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\EntityFramework.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\MySql.Data.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\MySql.Data.Entity.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\App.Models.pdb
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\BCrypt.Net.pdb
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\BCrypt.Net.xml
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Data\bin\Debug\EntityFramework.xml

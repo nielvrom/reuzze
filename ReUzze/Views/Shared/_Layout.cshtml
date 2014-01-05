@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+    <title>@ViewBag.Title | ReUzze</title>
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="authors" content="Arteveldehogeschool | Bachelor in de grafische en digitale media">
+    <meta name="copyright" content="Copyright 2002-13 Arteveldehogeschool. All rights reserved.">
+    @*  HUMANS.TXT *@
+    <link rel="author" href="humans.txt">
+    @*  FAVICONS AND TOCH ICONS *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    
+    @*  BOOTSTRAP *@
+    @Styles.Render("~/Content/bootstrap")
+    @* JQUERY UI CSS *@
+    @*Styles.Render("~/Content/themes/base/css")*@
+    @*  OWN CSS STYLESHEETS BUNDLE *@
+    @Styles.Render("~/Content/public/pagecss")        
+    @* EXTRA HEAD PER PAGE (VIEW) *@
+    @RenderSection("head", required: false)
+    @*  MODERNIZR *@
+    @*Scripts.Render("~/bundles/modernizr")*@
+  </head>
+
+  <body> 
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarcollapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="~/home/index"><img class="logo" src="~/Images/logo_bo.png" alt="ReUzze Logo" />ReUzze Backoffice</a>
+      </div>
+      @{Html.RenderPartial("_CourtesyPartial");}
+    </nav>
+
+    <div id="wrapper">
+      <!-- Sidebar Partial -->
+      @{Html.RenderPartial("_SidebarPartial");}
+      
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="header">
+          <h1 class="page-title">
+              <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+              @ViewBag.Title
+          </h1>
+        </div>
+        <div class="page-content inset">
+          <div class="row">
+            @* REAL CONTENT VIEW *@
+            @RenderBody()
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    @{Html.RenderPartial("_DeleteModalPartial");} 
+
+    @* JQUERY *@
+    @Scripts.Render("~/bundles/jquery")
+    @* JQUERY UI *@
+    @Scripts.Render("~/bundles/jqueryui")
+    @* BOOTSTRAP *@
+    @Scripts.Render("~/bundles/bootstrap")
+    @* PAGE JS BUNDLE *@
+    @Scripts.Render("~/bundles/page")
+    @* EXTRA JS PER PAGE (VIEW) *@
+    @RenderSection("scripts", required: false)
+  </body>
+</html>
+
+

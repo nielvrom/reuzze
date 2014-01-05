@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="reuzzeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="reuzzeCS2" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="addresses" EntityType="reuzzeModel.address" />
+    <EntitySet Name="bids" EntityType="reuzzeModel.bid" />
+    <EntitySet Name="categories" EntityType="reuzzeModel.category" />
+    <EntitySet Name="entities" EntityType="reuzzeModel.entity" />
+    <EntitySet Name="favorites" EntityType="reuzzeModel.favorite" />
+    <EntitySet Name="media" EntityType="reuzzeModel.medium" />
+    <EntitySet Name="messages" EntityType="reuzzeModel.message" />
+    <EntitySet Name="persons" EntityType="reuzzeModel.person" />
+    <EntitySet Name="regions" EntityType="reuzzeModel.region" />
+    <EntitySet Name="roles" EntityType="reuzzeModel.role" />
+    <EntitySet Name="users" EntityType="reuzzeModel.user" />
+    <AssociationSet Name="fk_addresses_regions1" Association="reuzzeModel.fk_addresses_regions1">
+      <End Role="regions" EntitySet="regions" />
+      <End Role="addresses" EntitySet="addresses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_persons_addresses1" Association="reuzzeModel.fk_persons_addresses1">
+      <End Role="addresses" EntitySet="addresses" />
+      <End Role="persons" EntitySet="persons" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bids_entities1" Association="reuzzeModel.fk_bids_entities1">
+      <End Role="entities" EntitySet="entities" />
+      <End Role="bids" EntitySet="bids" />
+    </AssociationSet>
+    <AssociationSet Name="fk_categories_categories1" Association="reuzzeModel.fk_categories_categories1">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="categories1" EntitySet="categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_entities_categories1" Association="reuzzeModel.fk_entities_categories1">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="entities" EntitySet="entities" />
+    </AssociationSet>
+    <AssociationSet Name="fk_entities_regions1" Association="reuzzeModel.fk_entities_regions1">
+      <End Role="regions" EntitySet="regions" />
+      <End Role="entities" EntitySet="entities" />
+    </AssociationSet>
+    <AssociationSet Name="fk_favorites_entities1" Association="reuzzeModel.fk_favorites_entities1">
+      <End Role="entities" EntitySet="entities" />
+      <End Role="favorites" EntitySet="favorites" />
+    </AssociationSet>
+    <AssociationSet Name="fk_media_entities1" Association="reuzzeModel.fk_media_entities1">
+      <End Role="entities" EntitySet="entities" />
+      <End Role="media" EntitySet="media" />
+    </AssociationSet>
+    <AssociationSet Name="fk_users_persons1" Association="reuzzeModel.fk_users_persons1">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="fk_users_roles1" Association="reuzzeModel.fk_users_roles1">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="address_id" />
+    </Key>
+    <Property Name="address_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="address_street" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="address_city" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="address_lat" Type="Decimal" Precision="18" Scale="12" />
+    <Property Name="address_lon" Type="Decimal" Precision="18" Scale="12" />
+    <Property Name="address_streetnr" Type="Int32" Nullable="false" />
+    <Property Name="region_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="region" Relationship="reuzzeModel.fk_addresses_regions1" FromRole="addresses" ToRole="regions" />
+    <NavigationProperty Name="persons" Relationship="reuzzeModel.fk_persons_addresses1" FromRole="addresses" ToRole="persons" />
+  </EntityType>
+  <EntityType Name="bid">
+    <Key>
+      <PropertyRef Name="bid_id" />
+    </Key>
+    <Property Name="bid_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="entity_id" Type="Int64" Nullable="false" />
+    <Property Name="bid_amount" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <Property Name="bid_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="entity" Relationship="reuzzeModel.fk_bids_entities1" FromRole="bids" ToRole="entities" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="SByte" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="category_description" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="category_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="category_modified" Type="DateTime" Precision="0" />
+    <Property Name="category_deleted" Type="DateTime" Precision="0" />
+    <Property Name="category_parentid" Type="SByte" />
+    <NavigationProperty Name="categories1" Relationship="reuzzeModel.fk_categories_categories1" FromRole="categories" ToRole="categories1" />
+    <NavigationProperty Name="category1" Relationship="reuzzeModel.fk_categories_categories1" FromRole="categories1" ToRole="categories" />
+    <NavigationProperty Name="entities" Relationship="reuzzeModel.fk_entities_categories1" FromRole="categories" ToRole="entities" />
+  </EntityType>
+  <EntityType Name="entity">
+    <Key>
+      <PropertyRef Name="entity_id" />
+    </Key>
+    <Property Name="entity_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="entity_title" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="entity_description" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
+    <Property Name="entity_starttime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="entity_endtime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="entity_instantsellingprice" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <Property Name="entity_shippingprice" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="entity_condition" Type="String" Nullable="false" MaxLength="65532" Unicode="true" FixedLength="false" />
+    <Property Name="entity_views" Type="Int64" />
+    <Property Name="entity_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="entity_modified" Type="DateTime" Precision="0" />
+    <Property Name="entity_deleted" Type="DateTime" Precision="0" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="region_id" Type="Int32" Nullable="false" />
+    <Property Name="category_id" Type="SByte" Nullable="false" />
+    <NavigationProperty Name="bids" Relationship="reuzzeModel.fk_bids_entities1" FromRole="entities" ToRole="bids" />
+    <NavigationProperty Name="category" Relationship="reuzzeModel.fk_entities_categories1" FromRole="entities" ToRole="categories" />
+    <NavigationProperty Name="region" Relationship="reuzzeModel.fk_entities_regions1" FromRole="entities" ToRole="regions" />
+    <NavigationProperty Name="favorites" Relationship="reuzzeModel.fk_favorites_entities1" FromRole="entities" ToRole="favorites" />
+    <NavigationProperty Name="media" Relationship="reuzzeModel.fk_media_entities1" FromRole="entities" ToRole="media" />
+  </EntityType>
+  <EntityType Name="favorite">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="entity_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="entity_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="entity" Relationship="reuzzeModel.fk_favorites_entities1" FromRole="favorites" ToRole="entities" />
+  </EntityType>
+  <EntityType Name="medium">
+    <Key>
+      <PropertyRef Name="medium_id" />
+    </Key>
+    <Property Name="medium_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="entity_id" Type="Int64" Nullable="false" />
+    <Property Name="medium_url" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="medium_type" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="medium_mimetype" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="medium_isexternal" Type="Boolean" />
+    <NavigationProperty Name="entity" Relationship="reuzzeModel.fk_media_entities1" FromRole="media" ToRole="entities" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="message_id" Type="Guid" Nullable="false" />
+    <Property Name="message_body" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="message_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="message_deleted" Type="DateTime" Precision="0" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="friend_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="person_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="person_firstname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="person_surname" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="person_profile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="person_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="person_modified" Type="DateTime" Precision="0" />
+    <Property Name="person_deleted" Type="DateTime" Precision="0" />
+    <Property Name="address_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="address" Relationship="reuzzeModel.fk_persons_addresses1" FromRole="persons" ToRole="addresses" />
+    <NavigationProperty Name="users" Relationship="reuzzeModel.fk_users_persons1" FromRole="persons" ToRole="users" />
+  </EntityType>
+  <EntityType Name="region">
+    <Key>
+      <PropertyRef Name="region_id" />
+    </Key>
+    <Property Name="region_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="region_name" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="addresses" Relationship="reuzzeModel.fk_addresses_regions1" FromRole="regions" ToRole="addresses" />
+    <NavigationProperty Name="entities" Relationship="reuzzeModel.fk_entities_regions1" FromRole="regions" ToRole="entities" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="SByte" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="role_description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="role_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="role_modified" Type="DateTime" Precision="0" />
+    <Property Name="role_deleted" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="users" Relationship="reuzzeModel.fk_users_roles1" FromRole="roles" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="user_username" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="user_password" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="true" />
+    <Property Name="user_salt" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="true" />
+    <Property Name="user_email" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="user_rating" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+    <Property Name="user_created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="user_modified" Type="DateTime" Precision="0" />
+    <Property Name="user_deleted" Type="DateTime" Precision="0" />
+    <Property Name="user_lastlogin" Type="DateTime" Precision="0" />
+    <Property Name="user_locked" Type="DateTime" Precision="0" />
+    <Property Name="person_id" Type="Int32" Nullable="false" />
+    <Property Name="role_id" Type="SByte" Nullable="false" />
+    <NavigationProperty Name="person" Relationship="reuzzeModel.fk_users_persons1" FromRole="users" ToRole="persons" />
+    <NavigationProperty Name="role" Relationship="reuzzeModel.fk_users_roles1" FromRole="users" ToRole="roles" />
+  </EntityType>
+  <Association Name="fk_addresses_regions1">
+    <End Role="regions" Type="reuzzeModel.region" Multiplicity="1" />
+    <End Role="addresses" Type="reuzzeModel.address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="regions">
+        <PropertyRef Name="region_id" />
+      </Principal>
+      <Dependent Role="addresses">
+        <PropertyRef Name="region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_persons_addresses1">
+    <End Role="addresses" Type="reuzzeModel.address" Multiplicity="1" />
+    <End Role="persons" Type="reuzzeModel.person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="addresses">
+        <PropertyRef Name="address_id" />
+      </Principal>
+      <Dependent Role="persons">
+        <PropertyRef Name="address_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bids_entities1">
+    <End Role="entities" Type="reuzzeModel.entity" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="bids" Type="reuzzeModel.bid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="entities">
+        <PropertyRef Name="entity_id" />
+      </Principal>
+      <Dependent Role="bids">
+        <PropertyRef Name="entity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_categories_categories1">
+    <End Role="categories" Type="reuzzeModel.category" Multiplicity="0..1" />
+    <End Role="categories1" Type="reuzzeModel.category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="categories1">
+        <PropertyRef Name="category_parentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_entities_categories1">
+    <End Role="categories" Type="reuzzeModel.category" Multiplicity="1" />
+    <End Role="entities" Type="reuzzeModel.entity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="entities">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_entities_regions1">
+    <End Role="regions" Type="reuzzeModel.region" Multiplicity="1" />
+    <End Role="entities" Type="reuzzeModel.entity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="regions">
+        <PropertyRef Name="region_id" />
+      </Principal>
+      <Dependent Role="entities">
+        <PropertyRef Name="region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_favorites_entities1">
+    <End Role="entities" Type="reuzzeModel.entity" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="favorites" Type="reuzzeModel.favorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="entities">
+        <PropertyRef Name="entity_id" />
+      </Principal>
+      <Dependent Role="favorites">
+        <PropertyRef Name="entity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_media_entities1">
+    <End Role="entities" Type="reuzzeModel.entity" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="media" Type="reuzzeModel.medium" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="entities">
+        <PropertyRef Name="entity_id" />
+      </Principal>
+      <Dependent Role="media">
+        <PropertyRef Name="entity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_users_persons1">
+    <End Role="persons" Type="reuzzeModel.person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users" Type="reuzzeModel.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="person_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_users_roles1">
+    <End Role="roles" Type="reuzzeModel.role" Multiplicity="1" />
+    <End Role="users" Type="reuzzeModel.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

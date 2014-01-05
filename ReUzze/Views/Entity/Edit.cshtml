@@ -1,0 +1,89 @@
+﻿@model ReUzze.Models.EntityViewModel
+
+@using ReUzze.Helpers
+
+@{
+    ViewBag.Title = "Entity Management";
+    ViewBag.Description = "With This view you can create an Entity.";
+    ViewBag.Keywords = "RWD";
+}
+
+<div class="row">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Create a new Entity
+            </div>
+            <div class="panel-body">
+                @if (Model.StatusMessage != null)
+                {
+                    <div class="field-validation-error">
+                        <p>@Html.DisplayTextFor(model => model.StatusMessage)</p>
+                    </div>
+                }
+
+                @using (Html.BeginForm("Edit", "Entity", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title)
+                            @Html.TextBoxFor(model =>  model.Title, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model =>  model.Title)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description)
+                            @Html.TextAreaFor(model => model.Description, new {@class="form-control", rows=4, cols=100  })
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div> 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartTime)
+                            @Html.TextBoxFor(model =>  model.StartTime, new {@class="form-control datepicker" })
+                            @Html.ValidationMessageFor(model =>  model.StartTime)
+                        </div> 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndTime)
+                            @Html.TextBoxFor(model =>  model.EndTime, new {@class="form-control datepicker" })
+                            @Html.ValidationMessageFor(model =>  model.EndTime)
+                        </div> 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.InstantSellingPrice)
+                            @Html.TextBoxFor(model =>  model.InstantSellingPrice, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model =>  model.InstantSellingPrice)
+                        </div>   
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </fieldset>
+                }
+                <div class="pull-right well">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/chosen")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/chosen")
+
+    <!-- DATE TIME PICKER -->
+    <script type="text/javascript" src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript">
+        $('.datepicker').datetimepicker({
+            showAnim: 'slideDown',
+            dateFormat: 'yy/mm/dd',
+            changeMonth: true,
+            changeYear: true
+        });
+        $(".chosen-select").chosen({
+            disable_search: true
+        });
+    </script>
+}

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="reuzzeModelStoreContainer" CdmEntityContainer="reuzzeCS2">
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="reuzzeModel.address">
+        <MappingFragment StoreEntitySet="addresses">
+          <ScalarProperty Name="address_id" ColumnName="address_id" />
+          <ScalarProperty Name="address_street" ColumnName="address_street" />
+          <ScalarProperty Name="address_city" ColumnName="address_city" />
+          <ScalarProperty Name="address_lat" ColumnName="address_lat" />
+          <ScalarProperty Name="address_lon" ColumnName="address_lon" />
+          <ScalarProperty Name="address_streetnr" ColumnName="address_streetnr" />
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bids">
+      <EntityTypeMapping TypeName="reuzzeModel.bid">
+        <MappingFragment StoreEntitySet="bids">
+          <ScalarProperty Name="bid_id" ColumnName="bid_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+          <ScalarProperty Name="bid_amount" ColumnName="bid_amount" />
+          <ScalarProperty Name="bid_date" ColumnName="bid_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="reuzzeModel.category">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_description" ColumnName="category_description" />
+          <ScalarProperty Name="category_created" ColumnName="category_created" />
+          <ScalarProperty Name="category_modified" ColumnName="category_modified" />
+          <ScalarProperty Name="category_deleted" ColumnName="category_deleted" />
+          <ScalarProperty Name="category_parentid" ColumnName="category_parentid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entities">
+      <EntityTypeMapping TypeName="reuzzeModel.entity">
+        <MappingFragment StoreEntitySet="entities">
+          <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+          <ScalarProperty Name="entity_title" ColumnName="entity_title" />
+          <ScalarProperty Name="entity_description" ColumnName="entity_description" />
+          <ScalarProperty Name="entity_starttime" ColumnName="entity_starttime" />
+          <ScalarProperty Name="entity_endtime" ColumnName="entity_endtime" />
+          <ScalarProperty Name="entity_instantsellingprice" ColumnName="entity_instantsellingprice" />
+          <ScalarProperty Name="entity_shippingprice" ColumnName="entity_shippingprice" />
+          <ScalarProperty Name="entity_condition" ColumnName="entity_condition" />
+          <ScalarProperty Name="entity_views" ColumnName="entity_views" />
+          <ScalarProperty Name="entity_created" ColumnName="entity_created" />
+          <ScalarProperty Name="entity_modified" ColumnName="entity_modified" />
+          <ScalarProperty Name="entity_deleted" ColumnName="entity_deleted" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="favorites">
+      <EntityTypeMapping TypeName="reuzzeModel.favorite">
+        <MappingFragment StoreEntitySet="favorites">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="media">
+      <EntityTypeMapping TypeName="reuzzeModel.medium">
+        <MappingFragment StoreEntitySet="media">
+          <ScalarProperty Name="medium_id" ColumnName="medium_id" />
+          <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+          <ScalarProperty Name="medium_url" ColumnName="medium_url" />
+          <ScalarProperty Name="medium_type" ColumnName="medium_type" />
+          <ScalarProperty Name="medium_mimetype" ColumnName="medium_mimetype" />
+          <ScalarProperty Name="medium_isexternal" ColumnName="medium_isexternal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messages">
+      <EntityTypeMapping TypeName="reuzzeModel.message">
+        <MappingFragment StoreEntitySet="messages">
+          <ScalarProperty Name="message_id" ColumnName="message_id" />
+          <ScalarProperty Name="message_body" ColumnName="message_body" />
+          <ScalarProperty Name="message_created" ColumnName="message_created" />
+          <ScalarProperty Name="message_deleted" ColumnName="message_deleted" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="friend_id" ColumnName="friend_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persons">
+      <EntityTypeMapping TypeName="reuzzeModel.person">
+        <MappingFragment StoreEntitySet="persons">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="person_firstname" ColumnName="person_firstname" />
+          <ScalarProperty Name="person_surname" ColumnName="person_surname" />
+          <ScalarProperty Name="person_profile" ColumnName="person_profile" />
+          <ScalarProperty Name="person_created" ColumnName="person_created" />
+          <ScalarProperty Name="person_modified" ColumnName="person_modified" />
+          <ScalarProperty Name="person_deleted" ColumnName="person_deleted" />
+          <ScalarProperty Name="address_id" ColumnName="address_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="regions">
+      <EntityTypeMapping TypeName="reuzzeModel.region">
+        <MappingFragment StoreEntitySet="regions">
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+          <ScalarProperty Name="region_name" ColumnName="region_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="reuzzeModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="role_description" ColumnName="role_description" />
+          <ScalarProperty Name="role_created" ColumnName="role_created" />
+          <ScalarProperty Name="role_modified" ColumnName="role_modified" />
+          <ScalarProperty Name="role_deleted" ColumnName="role_deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="reuzzeModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_username" ColumnName="user_username" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_salt" ColumnName="user_salt" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_rating" ColumnName="user_rating" />
+          <ScalarProperty Name="user_created" ColumnName="user_created" />
+          <ScalarProperty Name="user_modified" ColumnName="user_modified" />
+          <ScalarProperty Name="user_deleted" ColumnName="user_deleted" />
+          <ScalarProperty Name="user_lastlogin" ColumnName="user_lastlogin" />
+          <ScalarProperty Name="user_locked" ColumnName="user_locked" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

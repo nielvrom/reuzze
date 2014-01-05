@@ -1,0 +1,7 @@
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\bin\Debug\App.Models.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\bin\Debug\App.Models.pdb
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\bin\Debug\Newtonsoft.Json.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\bin\Debug\Newtonsoft.Json.xml
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\obj\Debug\App.Models.dll
+c:\Users\Niels\documents\visual studio 2012\Projects\ReUzze\App.Models\obj\Debug\App.Models.pdb
+C:\Users\Niels\Documents\Visual Studio 2012\Projects\ReUzze\App.Models\obj\Debug\App.Models.csprojResolveAssemblyReference.cache

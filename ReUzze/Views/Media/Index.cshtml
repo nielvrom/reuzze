@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ReUzze.Models.medium>
+
+@{
+    ViewBag.Title = "Media Management";
+    ViewBag.Description = "In this view you can manage categories (like: edit, delete and publish). You can also create a new article!";
+}
+
+    @{ long previousEntityID = 0; }
+    @if (Model.Count() > 0)
+    {
+        foreach (var media in Model)
+        {
+            if(media.entity_id != @previousEntityID)
+            {
+                <div class="col-xs-6 col-md-3">
+                  <a class="thumbnail" href="~/entity/detail/@media.entity_id">  
+                      <img src="@Url.Content("~/Resources/uploads/" + @media.medium_url)" alt="image" />
+                  </a>
+                  <a href="~/entity/detail/@media.entity_id">Entity Title: @media.entity.entity_title</a>
+                </div>
+            }
+            
+            previousEntityID = media.entity_id; 
+        } 
+
+    }
+    else
+    {
+        <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            No Images in Database!
+            <a class="btn btn-default" href="~/entity/create">Add new Entity and add image to it</a>
+        </section>
+    }
+

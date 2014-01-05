@@ -1,0 +1,403 @@
+﻿/*--------------------------------------------
+	ReUzze BackOffice Template - CSS File
+--------------------------------------------*/
+
+/* Standard Settings */
+
+@import url(http://fonts.googleapis.com/css?family=Mr+Bedfort);
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+body {
+  background: #eded82;
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  margin-top: 0px;
+  color: #eee;
+}
+h2 {
+  font-size: 1.75em;
+}
+h3 {
+  font-size: 1.25em;
+}
+hr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #fff;
+}
+#page-content-wrapper {
+  width: 100%;
+}
+/*Navbar*/
+.navbar {
+  /*-webkit-box-shadow: 0px 0px 3px #e3e316;
+  -moz-box-shadow: 0px 0px 3px #e3e316;
+  box-shadow: 0px 0px 3px #e3e316;*/
+  background-color: #eded82;
+  border:none;
+  margin:0;
+}
+
+.navbar .logo{
+	width:50px;
+	height:auto;
+	padding-right: 10px;
+	position: relative;
+	bottom:3px;
+}
+
+#wrapper {
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  background: #e1e1e1;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  background-color: #fff;
+  margin-left: 5px;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+  border-bottom: 3px solid #eded82;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar-nav ul li a:before {
+    content: "";
+    border-left: 1px dotted #999999;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 40px;
+    width: 24px;
+}
+
+.sidebar-nav ul li a:after {
+    content: "-";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 1px;
+    width: 24px;
+}
+
+.sidebar-nav li a:hover {
+  color: #000;
+  background-color: #eded82;
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.inset {
+  padding: 20px;
+}
+
+.sidebar-nav .glyphicon{
+  display: inline;
+}
+
+.sidebaricon
+{
+    padding-right: 10px;
+}
+
+.sidebar-nav .nav-list li{
+  border: none;
+}
+  .sidebar-nav .nav-list li a{
+    padding-left:30px;
+    background: #f4f3f3;
+  }
+  .sidebar-nav .nav-list li a:hover {
+    background: #eded82;
+  }
+.sidebar-nav .nav-header .chevron
+{
+    float:right;
+    margin-right:10px;
+    margin-top:10px;
+}
+
+
+.icon{
+  float:right;
+}
+
+.nav-list>li>a {
+  padding:0px;
+}
+
+.header {
+  background: #ffffff;
+  background: #ffffff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e6e6e6), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #e6e6e6, #ffffff);
+  background: -moz-linear-gradient(center bottom, #e6e6e6 0%, #ffffff 100%);
+  background: -o-linear-gradient(bottom, #e6e6e6, #ffffff);
+  filter: progid:dximagetransform.microsoft.gradient(startColorStr='#4d5b76', EndColorStr='#6c7a95');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#e6e6e6')";
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  padding: 0em 1.25em;
+}
+.header h1 {
+  margin: 1em 0em;
+  padding: 0em;
+  line-height: 1em;
+  font-size: 1.5em;
+  color: #eee;
+  color: #333;
+}
+
+.field-validation-error {
+    display:block;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+/*.validation-summary-errors
+{
+    display:block;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}*/
+
+.delete-errors
+{
+    display:none;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+.logoutdropdown
+{
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #333333;
+    white-space: nowrap;
+}
+
+    .logoutdropdown:hover
+    {
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+
+.registerbtn
+{
+    border-right: 1px solid #999999;
+    border-left: 1px solid #999999;
+}
+
+#map-canvas {
+    width:50%;
+    height:500px;
+    float:left;
+}
+
+/* TIMEPICKER */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 40%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
+
+.entities tbody tr:hover
+{
+    cursor: pointer;
+}
+
+.favorite
+{
+    color:rgba(2,121,2,0.2);
+}
+
+.unfavorite
+{
+    color:green;
+}
+.overview 
+{
+    padding: 20px;
+}
+
+
+.circle
+{
+    background-color:#eded82;
+    padding-top: 47px;
+    width:100px;
+    height:100px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    display: block;
+    color:#999999;
+    border-radius:250px;
+    font-family: 'Mr Bedfort', cursive;
+}
+
+    .circle:hover
+    {
+        text-decoration:none;
+        color:#eded82;
+        background-color: #999999;
+    }
+
+.circletitle
+{
+    font-family: 'Lato', sans-serif;
+    margin-top: 5px;
+    width:120px;
+    color:#eded82;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+ul.categorieslist
+{
+    list-style-type: none;
+}
+
+ul.categorieslist ul
+{
+    list-style-type: none;
+}
+
+ul.categorieslist li
+{
+    font-weight:bold;
+}
+
+    ul.categorieslist ul li
+    {
+        font-weight: normal;
+        margin-left:-10px;
+    }
+
+
+td, th, thead
+{
+    border: 1px solid #dddddd;
+}
+
+.reuzzelogin
+{
+    border: 1px solid #dddddd;
+    height:327px;
+}
+
+.reuzzelogin img
+{
+    margin-top:80px;
+    margin-left:70px;
+}
+
+.avatar
+{
+    width:247px;
+    height:auto;
+    margin-right:20px;
+}
+
+.links
+{
+    margin-left:20px;
+}
+@media (max-width:767px) {
+
+#wrapper {
+  padding-left: 0;
+}
+
+#sidebar-wrapper {
+  left: 0;
+}
+
+#wrapper.active {
+  position: relative;
+  left: 250px;
+}
+
+#wrapper.active #sidebar-wrapper {
+  left: 250px;
+  width: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#menu-toggle {
+  display: inline-block;
+}
+
+.inset {
+  padding: 15px;
+}
+
+}
+
+

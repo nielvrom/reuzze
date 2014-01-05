@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ReUzze.Models.bid>
+
+@{
+    ViewBag.Title = "Bids From User";
+    ViewBag.Description = "In this view you can see the bids from the selected user";
+    ViewBag.Keywords = "reuzze, bids, user";
+}
+
+<div class="row">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="articles-list">
+        @if (Model.Count() > 0)
+        {
+            <p>Bids from: <b>@Model.FirstOrDefault().user.username</b></p>
+            <div class="table-responsive">
+                <table class="table table-striped entities">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Instant selling price (EUR)</th>
+                            <th>Condition</th>
+                            <th>Created by user</th>
+                            <th>Region</th>
+                            <th>Category</th>
+                            <th>Bid Amount</th>
+                            <th>Bid Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bid in Model) 
+                        {
+                            @* onclick="document.location = '../../entity/detail/@entity.entity_id';" *@
+                            <tr data-id="user-@bid.entity_id" data-title="@bid.entity_id">
+                                <td><a href="/entity/detail/@bid.entity_id">@bid.entity.entity_title</a></td>
+                                <td>@bid.entity.entity_description</td>
+                                <td>@bid.entity.entity_starttime</td>
+                                <td>@bid.entity.entity_endtime</td>
+                                <td>@bid.entity.entity_instantsellingprice</td>
+                                <td>@bid.entity.entity_condition</td>
+                                <td>@bid.entity.user.username</td>
+                                <td>@bid.entity.region.region_name</td>
+                                <td>@bid.entity.category.category_name</td>
+                                <td><span class="badge">@bid.bid_amount</span></td>
+                                <td>@bid.bid_date</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>The user has no bids yet!</p>
+        }
+    </section>        
+</div>

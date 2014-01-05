@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<App.Models.Address>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Address Management - Addresses List";
+    ViewBag.Description = "With This view you can see the Addresses.";
+    ViewBag.Keywords = "reuzze, addresses, list";
+}
+
+@if (Model.Count > 0)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="articles-list">
+        <div class="table-responsive">
+            @using (Html.BeginForm("Index", "Address", FormMethod.Get))
+            {
+                <p class="pull-right">
+                    Find by: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)  
+                    <input type="submit" value="Search" />
+                </p>
+            }
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>@Html.ActionLink("Street", "Index", new { sortOrder = ViewBag.StreetSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>Street Number</th>
+                        <th>@Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var address in Model)
+                    {
+                        <tr data-id="user-@address.Id" data-title="@address.City">
+                            <td>@address.City</td>
+                            <td>@address.Street</td>
+                            <td>@address.StreetNumber</td>
+                            <td>@address.Region.Name</td>
+                            <td>
+                                <a href="@Url.Action("Edit", new {id=@address.Id})" title="Edit user: @address.Street"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="@Url.Action("Delete", new {id=@address.Id})" title="Delete user: @address.Street" class="delete-link" data-cat="user" data-id=@address.Id><span class="glyphicon glyphicon-remove"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pull-right">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", 
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+        </div>
+        <a class="btn btn-default" href="~/address/map">See locations on a map</a>
+        <a class="btn btn-default" href="~/address/create">Add new Address</a>
+        <div class="delete-errors"></div>
+    </section>        
+}
+else if (ViewBag.NoSearchResults != true)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        No Addresses in Database!
+        <a class="btn btn-default" href="~/address/create">Add new Address</a>
+    </section>
+}
+else
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Your search has no results!
+        <a class="btn btn-default" href="~/address/index">Go back to overview list</a>
+    </section>
+}

@@ -1,0 +1,62 @@
+﻿@model ReUzze.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Enter Backoffice";
+    ViewBag.Description = "With This view you can log in to the backoffice.";
+    ViewBag.Keywords = "reuzze,user,login";
+}
+
+
+<section class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Log In
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <div class="form-group loginform">
+                        @Html.LabelFor(model => model.UserName)
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            @Html.TextBoxFor(model => model.UserName, new {@class="form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password)
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            @Html.PasswordFor(model => model.Password, new {@class="form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RememberMe)
+                        @Html.CheckBoxFor(model => model.RememberMe)
+                    </div>    
+                    <input type="submit" value="Log In" class="btn btn-default" />
+                </fieldset>
+            }
+            <div class="pull-right">
+                <!--<p>
+                    @Html.ActionLink("Register", "Register") if you don't have an account.
+                </p>-->
+                <p>
+                    @Html.ActionLink("Recover your password", "Recover")
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="col-xs-4 col-sm-v col-md-4 col-lg-4 reuzzelogin">
+    <img src="~/Images/ReUzze_Logo.png" alt="reuzze logo" />
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    @Scripts.Render("~/bundles/location")
+}

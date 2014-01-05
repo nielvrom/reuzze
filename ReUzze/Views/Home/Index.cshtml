@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Description = "This is the overview page of the webapplication.";
+    ViewBag.Keywords = "backoffice, dashboard, reuzze";
+}
+@{Html.RenderAction("PVAmountPerEntity", "Home");}
+
+@{Html.RenderAction("PVLastEntities", "Home");}
+
+@{Html.RenderAction("PVLastBids", "Home");}
+
+@{Html.RenderAction("PVLastUsers", "Home");}

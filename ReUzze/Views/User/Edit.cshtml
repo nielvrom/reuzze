@@ -1,0 +1,107 @@
+﻿@model ReUzze.Models.UserViewModel
+
+@{
+    ViewBag.Title = "User Management - Edit User";
+    ViewBag.Description = "With This view you can edit a User.";
+    ViewBag.Keywords = "RWD";
+}
+
+<div class="row">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Edit the user: <b>@Model.UserName</b>
+            </div>
+            <div class="panel-body">
+                @if (Model.StatusMessage != null)
+                {
+                    <div class="field-validation-error">
+                        <p>@Html.DisplayTextFor(model => model.StatusMessage)</p>
+                    </div>
+                }
+                @using (Html.BeginForm()) {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Latitude, new {@class="latitude" })
+                    @Html.HiddenFor(model => model.Longitude, new {@class="longitude" })
+
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName)
+                            @Html.TextBoxFor(model => model.FirstName, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SurName)
+                            @Html.TextBoxFor(model => model.SurName, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.SurName)
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-default" id="use_curr_location">Use current location</a>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Street)
+                            @Html.TextBoxFor(model => model.Street, new {@class="form-control street" })
+                            @Html.ValidationMessageFor(model => model.Street)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.City)
+                            @Html.TextBoxFor(model => model.City, new {@class="form-control city" })
+                            @Html.ValidationMessageFor(model => model.City)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StreetNumber)
+                            @Html.TextBoxFor(model => model.StreetNumber, new {@class="form-control streetnumber" })
+                            @Html.ValidationMessageFor(model => model.StreetNumber)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Region)
+                            @Html.DropDownListFor(model => model.SelectRegionId, Model.Regions, "Choose... ", new {@class="form-control region" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Rating)
+                            @Html.Label("Rating must be between 0-10!")
+                            @Html.TextBoxFor(model => model.Rating, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.Rating)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName)
+                            @Html.TextBoxFor(model => model.UserName, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email)
+                            @Html.TextBoxFor(model => model.Email, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Roles)
+                            @Html.DropDownListFor(model => model.SelectRoleId, Model.Roles, "Choose... ", new {@class="form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password)
+                            @Html.PasswordFor(model => model.Password, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword)
+                            @Html.PasswordFor(model => model.ConfirmPassword, new {@class="form-control" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                        </div>            
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </fieldset>
+                }
+                <div class="pull-right">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    @Scripts.Render("~/bundles/location")
+}

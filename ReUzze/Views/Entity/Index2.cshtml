@@ -1,0 +1,53 @@
+﻿@model ICollection<App.Models.Entity>
+
+@{
+    ViewBag.Title = "Entity Management";
+    ViewBag.Description = "In this view you can manage entities (like: edit, delete and publish). You can also create a new entity!";
+}
+
+<div class="row">
+    @if (Model.Count > 0)
+    {
+        <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="articles-list">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Created</th>
+                            <!--<th>Entities</th>-->
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                            <tr data-id="category-@category.Id" data-title="@category.Name">
+                                <td>@category.Name</td>
+                                <td>@category.Description<br />@if (category.ParentCategory != null)
+                                    {
+                                        <text><small>Parent: @category.ParentCategory.Name</small></text>
+                                    }</td>
+                                <td>@category.CreateDate</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new {id=@category.Id})" title="Edit category: @category.Name"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="@Url.Action("Delete", new {id=@category.Id})" title="Delete category: @category.Name" class="delete-link" data-cat="category" data-id=@category.Id><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="delete-errors"></div>
+            <a class="btn btn-default" href="~/category/create">Add new Category</a>
+        </section>        
+    }
+    else
+    {
+        <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            No Categories in Database!
+            <a class="btn btn-default" href="~/category/create">Add new Category</a>
+        </section>
+    }
+</div>

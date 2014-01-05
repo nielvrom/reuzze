@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ReUzze.Models.entity>
+
+@{
+    ViewBag.Title = "Entity Management";
+    ViewBag.Description = "In this view you can manage categories (like: edit, delete and publish). You can also create a new article!";
+}
+<div class="col-lg-6 col-md-6 col-xs-6">
+    @if (ViewBag.ImagesList.Count > 0)
+    {
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+             @{int i = 0; }
+             @foreach (var image in ViewBag.ImagesList)
+             {
+                 if (i == 0)
+                 {
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                 }
+                 else
+                 {
+                     <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+                 }
+
+                 i = i + 1;
+             }
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" style="height:600px">
+            @{int index = 0; }
+            @foreach (var image in ViewBag.ImagesList)
+            {
+                if (index == 0)
+                {
+                    <div class="item active">
+                      <img src="@Url.Content("~/Resources/uploads/" + @image)" alt="image" />
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                      <img src="@Url.Content("~/Resources/uploads/" + @image)" alt="image" />
+                    </div>
+                }
+
+                index = index + 1;
+            }
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+    </div>  
+    }
+    else
+    {
+        <p>Entity has no images!</p>
+    }
+      
+</div>
+
+<section class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+    @foreach (var item in Model)
+    {
+        <h3>Details</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><b>Title: </b>@item.entity_title</li>
+            <li class="list-group-item"><b>Description: </b>@item.entity_description</li>
+            <li class="list-group-item"><b>Start Time: </b>@item.entity_starttime</li>
+            <li class="list-group-item"><b>End Time: </b>@item.entity_endtime</li>
+            <li class="list-group-item"><b>Instant Selling Price: </b>@item.entity_instantsellingprice</li>
+            <li class="list-group-item"><b>Condition: </b>@item.entity_condition</li>
+            <li class="list-group-item"><b>Created at: </b>@item.entity_created</li>
+            <li class="list-group-item"><b>Posted by: </b>@item.user.username</li>
+            <li class="list-group-item"><b>In region: </b>@item.region.region_name</li>
+            <li class="list-group-item"><b>Category: </b>@item.category.category_name</li>
+        </ul>
+        <h3>Bids</h3>
+        if (item.bids.Count != 0)
+        {
+            foreach (var bid in item.bids)
+            {
+                <p><b>Bid Amount:</b> @bid.bid_amount by @bid.user.username</p>  
+            }
+        }
+        else
+        {
+            <p>No bids!</p>
+        }
+    }
+
+    @if (Model.FirstOrDefault().user.username != User.Identity.Name)
+    {
+        using (Html.BeginForm("Detail", "Entity", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.FirstOrDefault().entity_id)
+            <p>
+                Place new bid : @Html.TextBoxFor(model => model.FirstOrDefault().bids.FirstOrDefault().bid_amount, new { @class = "form-control" })
+                <input type="submit" value="OK" />
+            </p>
+        }
+    }
+    else
+    {
+        <p>You can't bid on your own entity!</p>
+    }
+
+</section>
+
+@section Scripts{
+    <script>
+        $('.carousel').carousel();
+    </script>
+}

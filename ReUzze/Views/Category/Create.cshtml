@@ -1,0 +1,117 @@
+﻿@model ReUzze.Models.CategoryViewModel
+
+@{
+    ViewBag.Title = "Category Management";
+    ViewBag.Description = "With This view you can create a Category.";
+    ViewBag.Keywords = "RWD";
+}
+<section class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Create a new Category
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { autocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Category.Name)
+                        @Html.TextBoxFor(model =>  model.Category.Name, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model =>  model.Category.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Category.Description)
+                        @Html.TextAreaFor(model => model.Category.Description, new {@class="form-control", rows=4, cols=100  })
+                        @Html.ValidationMessageFor(model => model.Category.Description)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Category.ParentCategory)
+                        @Html.DropDownListFor(model => model.Category.ParentId, new SelectList(Model.Categories, "Id", "Name"), "-- Select Parent Category --", new {@class="form-control" })
+                    </div>                     
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </fieldset>
+            }
+            <div class="pull-right well">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</section>
+<section class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Standard Categories in Webapplication
+        </div>
+        <div class="panel-body">
+            <ul class="categorieslist">
+                <li>Auto's & Motoren</li>
+                <ul>
+                    <li>Auto - Accessoires</li>
+                    <li>Auto - Onderdelen & Wisselstuk</li>
+                    <li>Auto - Hifi & Navigatie</li>
+                    <li>Auto - Tuning & Styling</li>
+                </ul>
+                <li>Beauty</li>
+                <ul>
+                    <li>Make-up</li>
+                    <li>Parfum</li>
+                    <li>Gezondheid & Welzijn</li>
+                    <li>Sieraden & Horloges</li>
+                </ul>
+                <li>Boeken, Films & Muziek</li>
+                <ul>
+                    <li>Boeken & Strips</li>
+                    <li>Dvd's, Video's & Films</li>
+                    <li>Muziek & Instrumenten</li>
+                </ul>
+                <li>Elektronica</li>
+                <ul>
+                    <li>Computers & Tablets</li>
+                    <li>Smartphones & Mobiele telefonie</li>
+                    <li>Tv, Audio & Video</li>
+                    <li>Fotografie & Camera's</li>
+                </ul>
+                <li>Huis & Tuin</li>
+                <ul>
+                    <li>Meubels</li>
+                    <li>Tuin & Terras</li>
+                    <li>Woondecoratie & Design</li>
+                </ul>
+                <li>Mode</li>
+                <ul>
+                    <li>Dameskleding</li>
+                    <li>Damesschoenen</li>
+                    <li>Herenkleding</li>
+                    <li>Kinderkleding meisjes</li>
+                </ul>
+                <li>Overige</li>
+                <ul>
+                    <li>Business & Industrie</li>
+                    <li>Immobiliën</li>
+                </ul>
+                <li>Verzamelen</li>
+                <ul>
+                    <li>Kunst & Antiek</li>
+                    <li>Munten & Bankbiljetten</li>
+                    <li>Postzegels</li>
+                    <li>Verzamelen</li>
+                </ul>
+                <li>Vrije Tijd</li>
+                <ul>
+                    <li>Doe-Het-Zelf & Hobby</li>
+                    <li>Games & Consoles</li>
+                    <li>Sport & Fietsen</li>
+                    <li>Tickets & Reizen</li>
+                </ul
+            </ul>
+        </div>
+    </div>
+    <a class="btn btn-default" href="~/category/setcategories">Add these categories to the database.</a>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ckeditor")
+}

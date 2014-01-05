@@ -1,0 +1,27 @@
+﻿@model ReUzze.Models.ChangeSettingsViewModel
+
+@{
+    ViewBag.Title = "Change Password";
+    ViewBag.Description = "With This view you can edit your password.";
+    ViewBag.Keywords = "reuzze, user, manage";
+}
+
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            You're logged in as <strong>@User.Identity.Name</strong>.
+        </div>
+        <div class="panel-body">
+            @if (Model.StatusMessage != null)
+            {
+                <div class="field-validation-error">
+                    <p>@Html.DisplayTextFor(model => model.StatusMessage)</p>
+                </div>
+            }
+            @Html.Partial("_ChangePasswordPartial")
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

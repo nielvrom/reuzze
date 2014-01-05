@@ -1,0 +1,14 @@
+/* TEAM */                       
+	Je titel: Vanpeteghem Gilles & Vroman Niels - Groep 10
+	Site: email, link naar contactformulier, etc.	                      
+	Twitter: Je Twitter gebruikersnaam.	                    
+	Locatie: Plaats, Land.	
+       					
+/* THANKS */						
+	Naam: naam of url	
+                            
+/* SITE */                           
+	Laatste aanpassing: JJJJ/MM/DD 	  
+	Standaarden: HTML5, CSS3,..	                        
+	Componenten: Modernizr, jQuery, etc.	                        
+	Software: Software gebruikt bij de ontwikkeling	

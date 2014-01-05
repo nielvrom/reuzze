@@ -1,0 +1,40 @@
+﻿@model ReUzze.Models.RecoverViewModel
+
+@{
+    ViewBag.Title = "Recover Password";
+    ViewBag.Description = "With This view you can recover your password";
+    ViewBag.Keywords = "reuzze,user,recover";
+}
+
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Recover Password
+        </div>
+        <div class="panel-body">
+            @if (Model.StatusMessage != null)
+            {
+                <div class="field-validation-error">
+                    <p>@Html.DisplayTextFor(model => model.StatusMessage)</p>
+                </div>
+            }
+
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <input type="submit" value="Recover" class="btn btn-default" />
+                </fieldset>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

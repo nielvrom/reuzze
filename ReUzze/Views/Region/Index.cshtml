@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<App.Models.Region>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Region Management - Regions List";
+    ViewBag.Description = "With This view you can see the Regionss.";
+    ViewBag.Keywords = "reuzze, regions, list";
+}
+
+@if (Model.Count > 0)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="table-responsive">
+            @using (Html.BeginForm("Index", "Region", FormMethod.Get))
+            {
+                <p class="pull-right">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)  
+                    <input type="submit" value="Search" />
+                </p>
+            }
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>@Html.ActionLink("Addresses in Region", "Index", new { sortOrder = ViewBag.AddressesSortParm, currentFilter=ViewBag.CurrentFilter })</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var region in Model)
+                    {
+                        <tr data-id="role-@region.Id" data-title="@region.Name">
+                            <td>@region.Name</td>
+                            <td><span class="badge">@region.Addresses.Count</span></td>
+                            <td>
+                                <a href="@Url.Action("Edit", new {id=@region.Id})" title="Edit role: @region.Name"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="@Url.Action("Delete", new {id=@region.Id})" title="Delete role: @region.Name" class="delete-link" data-cat="role" data-id=@region.Id><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pull-right">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", 
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+        </div>
+        <div class="delete-errors"></div>
+        <a class="btn btn-default" href="~/region/create">Add new Region</a>
+    </section>        
+}
+else if (ViewBag.NoSearchResults != true)
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        No Regions in Database!
+        <a class="btn btn-default" href="~/region/create">Add new Region</a>
+    </section>
+}
+else
+{
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        Your search has no results!
+        <a class="btn btn-default" href="~/region/index">Go back to overview list</a>
+    </section>
+}
+

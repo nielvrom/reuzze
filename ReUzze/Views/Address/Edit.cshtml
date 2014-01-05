@@ -1,0 +1,54 @@
+﻿@model ReUzze.Models.AddressViewModel
+
+@{
+    ViewBag.Title = "Address Management";
+    ViewBag.Description = "With This view you can create a Category.";
+    ViewBag.Keywords = "RWD";
+}
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Edit the address: <b>@Model.Address.Street @Model.Address.StreetNumber @Model.Address.City</b>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    @Html.HiddenFor(model => model.Address.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.City)
+                        @Html.TextBoxFor(model => model.Address.City, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model => model.Address.City)
+                    </div>  
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.Street)
+                        @Html.TextBoxFor(model => model.Address.Street, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model => model.Address.Street)
+                    </div> 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address.StreetNumber)
+                        @Html.TextBoxFor(model => model.Address.StreetNumber, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model => model.Address.StreetNumber)
+                    </div>   
+                    <div class="form-group">
+                            @Html.LabelFor(model => model.Address.Region)
+                            @Html.DropDownListFor(model => model.SelectRegionId, Model.Regions, "Choose... ", new {@class="form-control" })
+                        </div>                
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </fieldset>
+            }
+            <div class="pull-right">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

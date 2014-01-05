@@ -1,0 +1,23 @@
+﻿@model App.Models.User
+
+@{
+    ViewBag.Title = "User Detail";
+    ViewBag.Description = "With This view you can see the Users.";
+    ViewBag.Keywords = "RWD";
+}
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">   
+    <img src="~/Images/default_avatar.png" class="pull-left avatar" alt="default avatar" />
+    <ul class="list-group pull-left">
+        <li class="list-group-item"><b>Username: </b>@Model.UserName</li>
+        <li class="list-group-item"><b>Email: </b>@Model.Email</li>
+        <li class="list-group-item"><b>Full Name: </b>@Model.Person.FirstName @Model.Person.SurName</li>
+        <li class="list-group-item"><b>Created On: </b>@Model.CreatedDate</li>
+        <li class="list-group-item"><b>Role: </b>@Model.Role.Name</li>
+        <li class="list-group-item"><b>Adres: </b>@Model.Person.Address.Street @Model.Person.Address.StreetNumber @Model.Person.Address.City @Model.Person.Address.Region.Name</li>
+    </ul>
+    <div class="btn-group btn-group-justified">
+        <a class="btn btn-default" role="button" href="~/bid/bidsfromuser/@Model.Id">Check bids from user</a>
+        <a class="btn btn-default" role="button" href="~/entity/entitiesfromuser/@Model.Id">Check entities from user</a>
+        <a class="btn btn-default" role="button" href="~/favorites/favoritesfromuser?id=@Model.Id&username=null">Check favorites from user</a>
+    </div>
+</section>  

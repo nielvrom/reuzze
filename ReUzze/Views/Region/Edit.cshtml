@@ -1,0 +1,41 @@
+﻿@model App.Models.Region
+
+@{
+    ViewBag.Title = "Region Management - Edit Region";
+    ViewBag.Description = "With This view you can edit a Region.";
+    ViewBag.Keywords = "RWD";
+}
+<section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Edit the region: <b>@Model.Name</b>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.TextBoxFor(model => model.Name, new {@class="form-control" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>               
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </fieldset>
+            }
+            <div class="pull-right">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ckeditor")
+}
+

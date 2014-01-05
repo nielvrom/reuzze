@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ReUzze.Models.entity>
+
+@{
+    ViewBag.Title = "Entities From User";
+    ViewBag.Description = "In this view you can see the entities from the selected user";
+    ViewBag.Keywords = "reuzze, entities, user";
+}
+
+<div class="row">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="articles-list">
+        @if (Model.Count() > 0)
+        {
+            <p>Entities from user: <b>@Model.FirstOrDefault().user.username</b></p>
+        <div class="table-responsive">
+            <table class="table table-striped entities">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Instant selling price (EUR)</th>
+                        <th>Condition</th>
+                        <th>Created by user</th>
+                        <th>Region</th>
+                        <th>Category</th>
+                        <th>Bids</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var entity in Model) 
+                    {
+                        @* onclick="document.location = '../../entity/detail/@entity.entity_id';" *@
+                        <tr data-id="user-@entity.entity_id" data-title="@entity.entity_id">
+                            <td><a href="/entity/detail/@entity.entity_id">@entity.entity_title</a></td>
+                            <td>@entity.entity_description</td>
+                            <td>@entity.entity_starttime</td>
+                            <td>@entity.entity_endtime</td>
+                            <td>@entity.entity_instantsellingprice</td>
+                            <td>@entity.entity_condition</td>
+                            <td>@entity.user.username</td>
+                            <td>@entity.region.region_name</td>
+                            <td>@entity.category.category_name</td>
+                            <td><span class="badge">@entity.bids.Count</span></td>
+                            @if(entity.favorites.Count != 0)
+                            {
+                                <td>@foreach (var favorite in entity.favorites)
+                                    {
+                                        if (favorite.entity_id == entity.entity_id && favorite.user.username == User.Identity.Name)
+                                        {
+                                            <a id="@entity.entity_id" title="Favor entity: @entity.entity_title"><span class="glyphicon glyphicon-heart unfavorite"></span></a>
+                                        }
+                                        else
+                                        {
+                                            <a id="@entity.entity_id" title="Favor entity: @entity.entity_title"><span class="glyphicon glyphicon-heart favorite"></span></a>
+                                        }
+                                    }
+                                    <a href="@Url.Action("Edit", new {id=@entity.entity_id})" title="Edit entity: @entity.entity_title"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="@Url.Action("Delete", new {id=@entity.entity_id})" title="Delete entity: @entity.entity_title" class="delete-link" data-cat="user" data-id=@entity.entity_id><span class="glyphicon glyphicon-remove"></a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a id="@entity.entity_id" title="Favor entity: @entity.entity_title"><span class="glyphicon glyphicon-heart favorite"></span></a>
+                                    <a href="@Url.Action("Edit", new {id=@entity.entity_id})" title="Edit entity: @entity.entity_title"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a href="@Url.Action("Delete", new {id=@entity.entity_id})" title="Delete entity: @entity.entity_title" class="delete-link" data-cat="user" data-id=@entity.entity_id><span class="glyphicon glyphicon-remove"></a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        }
+        else
+        {
+            <p>The user doesn't have any entities yet!</p>
+        }
+    </section>        
+</div>
